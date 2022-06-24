@@ -56,7 +56,6 @@ export const CreatePostModal = () => {
         duration: 9000,
         isClosable: true,
       });
-      dispatch(closeCreatePostModal());
       
     }
   }, [post, isError, isSuccess, message, dispatch, toast]);
@@ -83,7 +82,11 @@ export const CreatePostModal = () => {
       });
     }
     dispatch(createPost(formData));
-    
+    if(title.length !== 0 && description.length !== 0){
+      isSuccess && dispatch(closeCreatePostModal());
+    }
+
+    return;
   };
 
   return (
