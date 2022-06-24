@@ -1,0 +1,8 @@
+
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  position: relative;
+  background-color: #fafafa;
+}

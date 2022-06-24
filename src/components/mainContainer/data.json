@@ -1,0 +1,66 @@
+[
+  {
+    "post_title": "Poor girls calling hard working men broke",
+    "post_author": "Mark Zuckerberg",
+    "post_date": "2018-01-01 00:00:00",
+    "post_content": "This is the best of the best",
+    "id": 1,
+    "category": "Tech",
+    "color": "blue"
+  },
+  {
+    "post_title": "Local man can not can, why you shouldn't... explained",
+    "post_author": "Pauloski",
+    "post_date": "2018-01-01 00:00:00",
+    "post_content": "Completely brand fully researched benefits and client-centric leadership skills. Dramatically monetize exceptional schemas rather than superior web services. Quickly maximize user friendly expertise and focused.",
+    "id": 2,
+    "category": "sports",
+    "color": "red"
+  },
+   {
+        "post_title": "Tech: The new age of the internet",
+        "post_author": "Mark Zuckerberg",
+        "post_date": "2018-01-01 00:00:00",
+        "post_content": "Quickly maximize viral e-business via multifunctional leadership skills. Energistically evolve next-generation initiatives through tactical value. Dynamically transform inexpensive internal or organic sources whereas technically sound.",
+        "id": 3,
+        "category": "Algorithms",
+        "color": "green"
+    },
+    {
+        "post_title": "Why you should not use your phone in public",
+        "post_author": "Lekki girls",
+        "post_date": "2018-01-01 00:00:00",
+        "post_content": "Compellingly myocardinate ubiquitous infomediaries whereas synergistic products. Globally extend 24/365 opportunities whereas tactical convergence. Synergistically productize economically sound schemas before mission-critical initiatives. Dramatically actualize flexible.",
+        "id": 4,
+        "category": "Art",
+        "color": "purple"
+    },
+    {
+        "post_title": "Give no urgent 2k",
+        "post_author": "Alpha men(shola)",
+        "post_date": "2018-01-01 00:00:00",
+        "post_content": "Credibly deploy intuitive networks via collaborative architectures. Efficiently cultivate vertical relationships after robust human capital. Dynamically aggregate effective schemas and flexible collaboration and idea-sharing. Conveniently.",
+        "id": 5,
+        "category": "Health",
+        "color": "blue"
+    },
+    {
+        "post_title": "The new age of the internet",
+        "post_author": "Mark Zuckerberg",
+        "post_date": "2018-01-01 00:00:00",
+        "post_content": "Quickly maximize viral e-business via multifunctional leadership skills. Energistically evolve next-generation initiatives through tactical value. Dynamically transform inexpensive internal or organic sources whereas technically sound.",
+        "id": 6,
+        "category": "Sound",
+        "color": "red"
+    },
+    {
+        "post_title": "The new age of the internet",
+        "post_author": "Mark Zuckerberg",
+        "post_date": "2018-01-01 00:00:00",
+        "post_content": "Quickly maximize viral e-business via multifunctional leadership skills. Energistically evolve next-generation initiatives through tactical value. Dynamically transform inexpensive internal or organic sources whereas technically sound.",
+        "id": 7,
+        "category": "Tech",
+        "color": "green"
+    }
+    
+]

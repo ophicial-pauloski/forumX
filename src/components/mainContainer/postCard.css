@@ -1,0 +1,61 @@
+.post_card:hover {
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); */
+  background-color: #f0f4f7;
+  cursor: pointer;
+}
+
+.category_tag {
+  position: absolute;
+  top: -15px;
+  right: 15px;
+  background-color: #f0f4f7;
+}
+
+
+.post_props .post_head img:first-child {
+  position: relative;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  
+}
+
+.post_props .post_head .user_badge {
+  position: absolute;
+  top: -9px;
+  right: 0;
+  background-color: #f0f4f7;
+}
+
+.post_actions_props {
+  display: flex;
+}
+
+
+.post_actions_props .liked_users span{
+    width: 2rem;
+    height: 2rem;
+    display: block;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-right: -0.6rem;
+}
+
+@media (max-width:768px) {
+   .post_actions_props {
+    display: none;
+   }
+
+   .post_contents {
+     width: 100% !important;
+   }
+}
+
+.post_body h3 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #3b4149;
+}
+
+

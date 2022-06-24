@@ -1,0 +1,6 @@
+
+.navN {
+    position: fixed !important;
+    z-index: 1;
+    top: 0;
+}

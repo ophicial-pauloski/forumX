@@ -1,0 +1,111 @@
+.sidebar-menu {
+    width: 300px;
+    height: 100vh;
+    background: #fff;
+    padding-left: 35px;
+    border-right: 1px solid #e7e7e7;
+    position: fixed;
+    top: 80px;
+}
+
+
+
+.sidebar-menu .menu1 {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-menu .menu1 span {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    color: #5d6368;
+}
+
+.sidebar-menu .menu1 span i {
+    margin-right: 10px;
+}
+
+.sidebar-menu .menu-items {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.sidebar-menu .menu-items ul {
+    padding: 0px;
+    margin: 0px;
+}
+
+.sidebar-menu .menu-items ul li{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    margin-top: 20px;
+    text-transform: uppercase;
+}
+
+
+.sidebar-menu .menu-items ul li i {
+    margin-right: 15px;
+    color: #5d6368;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(1) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #5d6368;
+    margin-right: 15px;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(2) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #4184bb;
+    margin-right: 15px;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(3) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #72bb41;
+    margin-right: 15px;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(4) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #bb41b1;
+    margin-right: 15px;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(5) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #bb6441;
+    margin-right: 15px;
+}
+
+.sidebar-menu .menu-items ul li:nth-child(6) div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #bba541;
+    margin-right: 15px;
+}
+
+
+@media (max-width:768px) {
+    .sidebar-menu {
+        display: none;
+    }
+}
+    
