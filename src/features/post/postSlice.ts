@@ -33,7 +33,7 @@ export const createPost: any = createAsyncThunk(
 );
 
 //get all post
-export const getAllPost:any = createAsyncThunk("auth/getAllPost", async posts => {
+export const getAllPost:any = createAsyncThunk("auth/getAllPost", async (posts:any) => {
   try {
     return await getPosts();
   } catch (error: any) {

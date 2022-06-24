@@ -26,10 +26,14 @@ const handleLogOutUser = () => {
         </MenuButton>
         <MenuList>
           <MenuItem>View Profile</MenuItem>
-          <MenuItem _hover={{ bg: "none" }}>
-            <Button _hover={{ bg: "red.300" }} w={"100%"} bg='red' color={"white"} onClick={handleLogOutUser}>
-              Logout
-            </Button>
+          <MenuItem
+            _hover={{ bg: "red.300" }}
+            w={"100%"}
+            bg='red'
+            color={"white"}
+            onClick={handleLogOutUser}
+          >
+            Logout
           </MenuItem>
         </MenuList>
       </Menu>
