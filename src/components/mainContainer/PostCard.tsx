@@ -55,6 +55,7 @@ export const PostCard = () => {
           {post.data.map((post: any) => {
             return (
               <Box
+              key={post._id}
                 border={"1px solid #e5e5e5"}
                 p={3}
                 mt={3}
