@@ -83,9 +83,10 @@ export const CreatePostModal = () => {
     }
     dispatch(createPost(formData));
     if(title.length !== 0 && description.length !== 0){
-      isSuccess && dispatch(closeCreatePostModal());
+      isSuccess && !isError && dispatch(closeCreatePostModal());
+      console.log(formData);
+      
     }
-
     return;
   };
 

@@ -3,40 +3,44 @@ import { BsChatSquareFill } from "react-icons/bs";
 import { FaSortUp } from "react-icons/fa";
 import { BsDot } from "react-icons/bs";
 import { PostModal } from "../modals/PostModal";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../features/indexSlice";
-import { getAllPost } from "../../features/post/postSlice";
+import {
+  getAllPost,
+  reset,
+  likedAndDislikePost,
+} from "../../features/post/postSlice";
 import { useEffect } from "react";
 import { SpinnerLoader } from "../SpinnerLoader";
-import { reset } from "../../features/auth/authSlice";
-import { useToast, Box, Text, Heading, Link } from "@chakra-ui/react";
+import { useToast, Box, Text, Heading, Link, Center } from "@chakra-ui/react";
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+
 
 export const PostCard = () => {
   const toast = useToast();
-  const dispatch = useDispatch();
-  const { post, isSuccess, isError, isLoading, message } = useSelector(
+  const dispatch = useAppDispatch();
+  const { post, isSuccess, isError, isLoading, message } = useAppSelector(
     (state: any) => state.post
   );
 
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: "Error",
-        description: `${message.message}`,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-
+  const isFetchingPost = () => {
     dispatch(getAllPost());
-    return () => {
-      dispatch(reset());
-    };
-  }, [dispatch, isSuccess, message, isError, toast]);
+  }
+    
 
+  useEffect(() => {
+    isFetchingPost();
+  }, [isSuccess, dispatch]);
+
+  //open post modal
   const handleOpenPost = () => {
     dispatch(openModal());
+  };
+
+  //like post
+  const handlelikePost = (id: string) => {
+    dispatch(likedAndDislikePost(id));
+    console.log(id);
   };
 
   if (isLoading) {
@@ -55,7 +59,7 @@ export const PostCard = () => {
           {post.data.map((post: any) => {
             return (
               <Box
-              key={post._id}
+                key={post._id}
                 border={"1px solid #e5e5e5"}
                 p={3}
                 mt={3}
@@ -70,18 +74,23 @@ export const PostCard = () => {
                   rounded={"md"}
                   cursor='pointer'
                   mr={4}
+                  onClick={() => handlelikePost(post._id)}
                 >
                   <span>
                     <FaSortUp />
                   </span>
-                  <Text fontSize={"0.73rem"}>245</Text>
+                  <Center>
+                    <Text fontSize={"0.73rem"}>{post.likeCounts}</Text>
+                  </Center>
                 </Box>
                 <Box>
                   <Heading cursor={"pointer"} as='h1' size='md'>
                     {post.title}
                   </Heading>
                   <Text cursor={"pointer"} color='#4b587c'>
-                    {post.description.length > 100 ? ( post.description.substring(0, 100) + "...") : post.description}
+                    {post.description.length > 100
+                      ? post.description.substring(0, 100) + "..."
+                      : post.description}
                   </Text>
                   <Box display={"flex"} alignItems={"center"} mt={2}>
                     <Box>

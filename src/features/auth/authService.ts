@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// const URL_AUTH = "http://localhost:4000/auth/";
 const URL_AUTH = process.env.REACT_APP_API_KEY + "auth/";
 
 // register user
