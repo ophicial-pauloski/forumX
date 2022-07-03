@@ -3,7 +3,6 @@ import { BsChatSquareFill } from "react-icons/bs";
 import { FaSortUp } from "react-icons/fa";
 import { BsDot } from "react-icons/bs";
 import { PostModal } from "../modals/PostModal";
-// import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "../../features/indexSlice";
 import {
   getAllPost,
@@ -84,14 +83,16 @@ export const PostCard = () => {
                   </Center>
                 </Box>
                 <Box>
-                  <Heading cursor={"pointer"} as='h1' size='md'>
-                    {post.title}
-                  </Heading>
-                  <Text cursor={"pointer"} color='#4b587c'>
-                    {post.description.length > 100
-                      ? post.description.substring(0, 100) + "..."
-                      : post.description}
-                  </Text>
+                  <Link href={`/post`}>
+                    <a>{post.title}</a>
+                  </Link>
+                  <Link href='/post'>
+                    <Text cursor={"pointer"} color='#4b587c'>
+                      {post.description.length > 100
+                        ? post.description.substring(0, 100) + "..."
+                        : post.description}
+                    </Text>
+                  </Link>
                   <Box display={"flex"} alignItems={"center"} mt={2}>
                     <Box>
                       <Link>Pauloski</Link> in{" "}
