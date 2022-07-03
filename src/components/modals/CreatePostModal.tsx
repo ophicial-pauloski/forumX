@@ -85,6 +85,7 @@ export const CreatePostModal = () => {
     if(title.length !== 0 && description.length !== 0){
       isSuccess && !isError && dispatch(closeCreatePostModal());
       console.log(formData);
+      window.location.reload();
       
     }
     return;

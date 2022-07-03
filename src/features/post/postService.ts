@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const URL_POST = "http://localhost:4000/post/";
-// process.env.REACT_APP_API_KEY + "post/";
+
+
+// "http://localhost:4000/post/";
+const URL_POST = process.env.REACT_APP_API_KEY + "post/";
 
 
 //create post

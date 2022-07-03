@@ -1,19 +1,17 @@
-import { Container} from "react-bootstrap";
-import { MainTop } from "./MainTop";
-import './main.css';
-import { PostCard } from "./PostCard";
+import { Container } from "react-bootstrap";
+import "./main.css";
 import { BottomMenu } from "../bottombarMenu/BottomMenu";
+import { Home } from '../screens/Home';
+
+
 
 export const Main = () => {
-    return (
+  return (
       <section className='interface'>
         <Container>
-          <MainTop />
-          <div className='post_container'>
-            <PostCard />
-          </div>
+          <Home />
         </Container>
         <BottomMenu />
       </section>
-    );
+  );
 };

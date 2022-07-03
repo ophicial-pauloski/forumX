@@ -5,6 +5,8 @@ import "./navbarMenu.css";
 import { LoginModal } from "../modals/LoginModal";
 import { RegisterModal } from "../modals/RegisterModal";
 import { ProfileDropDown } from '../userProfile/ProfileDropDown';
+import {AiFillBell } from 'react-icons/ai';
+import { Box } from '@chakra-ui/react';
 
 const NavbarMenu = () => {
   const dispatch = useDispatch();
@@ -35,9 +37,11 @@ const NavbarMenu = () => {
           </Form>
         </Navbar.Collapse> */}
         <div className='d-flex align-items-center'>
-          <span className='mx-3'>
-            <i className='fas fa-bell'></i>
-          </span>
+          <Box mx={3} pos='relative'>
+            <AiFillBell size={25}/>
+            <Box h={2} w={2} bg='red' color={'white'} borderRadius='50%' pos='absolute' top={'-2px'} right={1}>
+            </Box>
+          </Box>
 
           {user ? (
             <span className='mx-3 fs-4 fw-bold text-capitalize'>

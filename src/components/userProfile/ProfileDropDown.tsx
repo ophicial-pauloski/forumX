@@ -7,6 +7,7 @@ import {
   Button
 } from "@chakra-ui/react";
 // import { useState } from "react";
+import {FaUserCircle} from 'react-icons/fa';
 import { useDispatch } from "react-redux";
 import { logout } from '../../features/auth/authSlice';
 
@@ -22,7 +23,9 @@ const handleLogOutUser = () => {
     <Box>
       <Menu>
         <MenuButton as={Button}>
-          <i className='fas fa-user'></i>
+          <span>
+            <FaUserCircle size={30}/>
+          </span>
         </MenuButton>
         <MenuList>
           <MenuItem>View Profile</MenuItem>
