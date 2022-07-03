@@ -4,4 +4,5 @@ export interface PostInterface {
     isSuccess: boolean;
     message: string;
     post: any[];
+    postById: any;
 }

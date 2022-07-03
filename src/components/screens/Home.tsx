@@ -15,7 +15,7 @@ export const Home = () => {
           </>
         }
       />
-      <Route path='/post' element={<PostDetails />} />
+      <Route path='/post/:id' element={<PostDetails />} />
     </Routes>
   );
 }

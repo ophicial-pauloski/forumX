@@ -8,11 +8,13 @@ import {
   getAllPost,
   reset,
   likedAndDislikePost,
+  fetchPostById,
 } from "../../features/post/postSlice";
 import { useEffect } from "react";
 import { SpinnerLoader } from "../SpinnerLoader";
-import { useToast, Box, Text, Heading, Link, Center } from "@chakra-ui/react";
+import { useToast, Box, Text, Heading, Center } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { Link } from "react-router-dom";
 
 
 export const PostCard = () => {
@@ -21,6 +23,7 @@ export const PostCard = () => {
   const { post, isSuccess, isError, isLoading, message } = useAppSelector(
     (state: any) => state.post
   );
+
 
   const isFetchingPost = () => {
     dispatch(getAllPost());
@@ -33,7 +36,7 @@ export const PostCard = () => {
 
   //open post modal
   const handleOpenPost = () => {
-    dispatch(openModal());
+    // console.log(postid);
   };
 
   //like post
@@ -65,6 +68,7 @@ export const PostCard = () => {
                 display={"flex"}
                 alignItems={"center"}
                 rounded={"sm"}
+                onClick={() => handleOpenPost()}
               >
                 <Box
                   ml={{ base: "0", md: "3", lg: "3", sm: "2", xs: "1" }}
@@ -83,10 +87,10 @@ export const PostCard = () => {
                   </Center>
                 </Box>
                 <Box>
-                  <Link href={`/post`}>
+                  <Link to={`/post/${post._id}`}>
                     <a>{post.title}</a>
                   </Link>
-                  <Link href='/post'>
+                  <Link to={`/post/${post._id}`}>
                     <Text cursor={"pointer"} color='#4b587c'>
                       {post.description.length > 100
                         ? post.description.substring(0, 100) + "..."
@@ -95,8 +99,9 @@ export const PostCard = () => {
                   </Link>
                   <Box display={"flex"} alignItems={"center"} mt={2}>
                     <Box>
-                      <Link>Pauloski</Link> in{" "}
-                      <Link color={"#0b87ff"}>Technology</Link>
+                      <Link to ="">
+                      Pauloski</Link> in
+                      <Link to='' color={"#0b87ff"}>Technology</Link>
                     </Box>
                     <Box display={"flex"} alignItems={"center"} ml={5} mr={5}>
                       <BsChatSquareFill color='#0b87ff' />{" "}

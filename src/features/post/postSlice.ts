@@ -4,12 +4,14 @@ import {
   createNewPost,
   getPosts,
   likePost,
+  getPostById,
 } from "../../features/post/postService";
 import { PostInterface } from "../../interfaces/post";
 
 
 const initialState: PostInterface = {
   post: [],
+  postById: {},
   isError: false,
   isLoading: false,
   isSuccess: false,
@@ -76,6 +78,20 @@ export const likedAndDislikePost: any = createAsyncThunk(
   }
 );
 
+//fetch post by id
+export const fetchPostById: any = createAsyncThunk(
+  "post/getpostbyid",
+  async (postid: string) => {
+    try {
+      return await getPostById(postid);
+    } catch (error: any) {
+      const message = error.message || error.toString();
+      return message;
+    }
+  }
+);
+
+//post slice
 export const postSlice: any = createSlice({
   name: "post",
   initialState,
@@ -140,6 +156,20 @@ export const postSlice: any = createSlice({
       state.isError = true;
       state.message = action.payload;
     },
+    //get post by id
+    [fetchPostById.pending]: (state: PostInterface) => {
+      state.isLoading = true;
+    },
+    [fetchPostById.fulfilled]: ( state: PostInterface, action: PayloadAction<any>) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.postById = action.payload;
+    },
+    [fetchPostById.rejected]: (state: PostInterface, action: PayloadAction<any>) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+    }
   },
 });
 
