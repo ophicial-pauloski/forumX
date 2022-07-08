@@ -1,10 +1,6 @@
 import axios from "axios";
 
-
-
-// "http://localhost:4000/post/";
-const URL_POST = "http://localhost:4000/post/";
-// process.env.REACT_APP_API_KEY + "post/";
+const URL_POST = "post/";
 
 
 //create post
@@ -26,7 +22,7 @@ export const getPosts = async () => {
 }
 
 //like post
-export const likePost = async (postId: string, token: string) => {
+export const likePost = async (postId: string, userId:string, token: string) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -39,8 +35,20 @@ console.log(res.data);
 
 //get post by id
 export const getPostById = async (postId: string) => {
-    const response = await axios.get(`${URL_POST}${postId}`);
+    const response = await axios.get(`${postId}`);
     console.log(response.data);
     
+    return response.data;
+}
+
+// delete post
+export const deletePost = async (postId: string, token: string) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    };
+
+    const response = await axios.delete(`${URL_POST}delete/${postId}`, config);
     return response.data;
 }

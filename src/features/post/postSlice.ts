@@ -5,9 +5,9 @@ import {
   getPosts,
   likePost,
   getPostById,
+  deletePost,
 } from "../../features/post/postService";
 import { PostInterface } from "../../interfaces/post";
-
 
 const initialState: PostInterface = {
   post: [],
@@ -21,7 +21,7 @@ const initialState: PostInterface = {
 //create post
 export const createPost: any = createAsyncThunk(
   "post/create",
-  async (post: any, thunkAPI) => {
+  async (post: PostInterface, thunkAPI) => {
     try {
       // get token auth state from redux store
       const { auth } = thunkAPI.getState() as any;
@@ -42,9 +42,29 @@ export const createPost: any = createAsyncThunk(
 //get all post
 export const getAllPost: any = createAsyncThunk(
   "post/getAllPost",
-  async (posts: any) => {
+  async (_, thunkAPI) => {
     try {
       return await getPosts();
+    } catch (error: any) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return message;
+    }
+  }
+);
+
+//delete post
+export const isDeletingPost: any = createAsyncThunk(
+  "post/delete",
+  async (post: string, thunkAPI) => {
+    try {
+      // get token auth state from redux store
+      const { auth } = thunkAPI.getState() as any;
+      return await deletePost(post, auth.user.token);
     } catch (error: any) {
       const message =
         (error.response &&
@@ -64,7 +84,10 @@ export const likedAndDislikePost: any = createAsyncThunk(
     try {
       // get token auth state from redux store
       const { auth } = thunkAPI.getState() as any;
-      return await likePost(postid, auth.user.token);
+      console.log(auth.user._id);
+      
+      
+      return await likePost(postid, auth.user._id, auth.user.token);
     } catch (error: any) {
       const message =
         (error.response &&
@@ -72,7 +95,7 @@ export const likedAndDislikePost: any = createAsyncThunk(
           error.response.data.message) ||
         error.message ||
         error.toString();
-      // return message;
+      return message;
       console.log(message);
     }
   }
@@ -85,7 +108,12 @@ export const fetchPostById: any = createAsyncThunk(
     try {
       return await getPostById(postid);
     } catch (error: any) {
-      const message = error.message || error.toString();
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
       return message;
     }
   }
@@ -100,76 +128,74 @@ export const postSlice: any = createSlice({
       return initialState;
     },
   },
-  extraReducers: {
-    [createPost.pending]: (state: PostInterface) => {
+  extraReducers: builder => {
+    builder
+    .addCase(createPost.pending, (state, action: PayloadAction<any>) => {
       state.isLoading = true;
-    },
-    [createPost.fulfilled]: (
-      state: PostInterface,
-      action: PayloadAction<any>
-    ) => {
+    });
+    builder.addCase(createPost.fulfilled, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.message = action.payload;
-      state.post = action.payload;
-    },
-    [createPost.rejected]: (
-      state: PostInterface,
-      action: PayloadAction<any>
-    ) => {
+      state.post.push(action.payload);
+    });
+    builder.addCase(createPost.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-    },
-    [getAllPost.pending]: (state: PostInterface) => {
+    });
+    builder.addCase(getAllPost.pending, (state, action: PayloadAction<any>) => {
       state.isLoading = true;
-    },
-    [getAllPost.fulfilled]: (
-      state: PostInterface,
-      action: PayloadAction<any>
-    ) => {
+    });
+    builder.addCase(getAllPost.fulfilled, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.post = action.payload;
-    },
-    [getAllPost.rejected]: (
-      state: PostInterface,
-      action: PayloadAction<any>
-    ) => {
+    });
+    builder.addCase(getAllPost.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-    },
-    [likedAndDislikePost.pending]: (state: PostInterface) => {
+    });
+    builder.addCase(likedAndDislikePost.pending, (state, action: PayloadAction<any>) => {
       state.isLoading = true;
-    },
-    [likedAndDislikePost.fulfilled]: (
-      state: PostInterface,
-      action: PayloadAction<any>
-    ) => {
+    });
+    builder.addCase(likedAndDislikePost.fulfilled, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.message = action.payload;
-    },
-    [likedAndDislikePost.rejected]: (state: PostInterface, action: PayloadAction<any>) => {
+    });
+    builder.addCase(likedAndDislikePost.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-    },
-    //get post by id
-    [fetchPostById.pending]: (state: PostInterface) => {
+    });
+    builder.addCase(fetchPostById.pending, (state, action: PayloadAction<any>) => {
       state.isLoading = true;
-    },
-    [fetchPostById.fulfilled]: ( state: PostInterface, action: PayloadAction<any>) => {
+    });
+    builder.addCase(fetchPostById.fulfilled, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.postById = action.payload;
-    },
-    [fetchPostById.rejected]: (state: PostInterface, action: PayloadAction<any>) => {
+    });
+    builder.addCase(fetchPostById.rejected, (state, action: PayloadAction<any>) => {
       state.isLoading = false;
       state.isError = true;
       state.message = action.payload;
-    }
+    });
+    builder.addCase(isDeletingPost.pending, (state, action: PayloadAction<any>) => {
+      state.isLoading = true;
+    });
+    builder.addCase(isDeletingPost.fulfilled, (state, action: PayloadAction<any>) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.post = state.post.filter((post: any) => post._id !== action.payload);
+    });
+    builder.addCase(isDeletingPost.rejected, (state, action: PayloadAction<any>) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.message = action.payload;
+    });
+
   },
 });
 

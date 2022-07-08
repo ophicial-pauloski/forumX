@@ -17,7 +17,7 @@ import {
 import { closeCreatePostModal } from "../../features/indexSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { createPost } from "../../features/post/postSlice";
+import { createPost, getAllPost } from "../../features/post/postSlice";
 
 export const CreatePostModal = () => {
   const [formData, setFormData] = useState({
@@ -37,29 +37,6 @@ export const CreatePostModal = () => {
   const handleChangeOnCreatePostForm = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: "Error",
-        description: `${message.message}`,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-
-    if (isSuccess) {
-      toast({
-        title: "Success",
-        description: `${message.message}`,
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      
-    }
-  }, [post, isError, isSuccess, message, dispatch, toast]);
-
   const handleCreatePost = (e: any) => {
     e.preventDefault();
     if (title.length === 0) {
@@ -90,6 +67,28 @@ export const CreatePostModal = () => {
     }
     return;
   };
+
+  useEffect(() => {
+     if (isError) {
+       toast({
+         title: "Error",
+         description: message,
+         status: "error",
+         duration: 9000,
+         isClosable: true,
+       });
+     }
+     if (isSuccess) {
+       toast({
+         title: "Success",
+         description: message,
+         status: "success",
+         duration: 9000,
+         isClosable: true,
+       });
+     }
+  }, [dispatch, isError, isSuccess, message]);
+
 
   return (
     <>
