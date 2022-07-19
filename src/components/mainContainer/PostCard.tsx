@@ -7,25 +7,26 @@ import {
   getAllPost,
   reset,
   likedAndDislikePost,
-  fetchPostById,
 } from "../../features/post/postSlice";
 import { useEffect } from "react";
 import { SpinnerLoader } from "../SpinnerLoader";
-import { useToast, Box, Text, Heading, Center } from "@chakra-ui/react";
+import { useToast, Box, Text, Center } from "@chakra-ui/react";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Link, useNavigate } from "react-router-dom";
 import { PostMenu } from './PostMenu';
 import moment from 'moment';
+import { openLoginModal } from "../../features/indexSlice";
 
 
-export const PostCard = () => {
+export const PostCard = ():JSX.Element => {
   const toast = useToast();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { post, isSuccess, isError, isLoading, message } = useAppSelector(
+  const { post, isError, isLoading, message } = useAppSelector(
     (state: any) => state.post
   );
+  const { user } = useAppSelector((state: any) => state.auth);
     
 
   useEffect(() => {
@@ -35,10 +36,20 @@ export const PostCard = () => {
     }
   }, [isError, message, dispatch]);
 
+  if(isError){
+    toast({
+      title: "Error",
+      description: "Post Failed" + message,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+  }
+
   //like post
   const handlelikePost = (id: string) => {
-    dispatch(likedAndDislikePost(id));
-    console.log(id);
+    user && dispatch(likedAndDislikePost(id));
+    user == null && dispatch(openLoginModal());
   };
 
   const openComment = (id: string) => {
@@ -76,6 +87,7 @@ export const PostCard = () => {
                   rounded={"md"}
                   cursor='pointer'
                   mr={4}
+                  bg={post.likes.includes(user?._id) && "#f91880"}
                   onClick={() => handlelikePost(post._id)}
                 >
                   <span>
@@ -108,10 +120,12 @@ export const PostCard = () => {
                     </Text>
                   </Link>
                   <Box display={"flex"} alignItems={"center"} mt={2}>
-                    <Box>
-                      <Link to=''>Pauloski</Link> in
-                      <Link to='' color={"#0b87ff"}>
-                        Technology
+                    <Box display={"flex"} alignItems='center'>
+                      <Text fontSize={"0.7rem"} mr={1}>
+                        Posted by
+                      </Text>
+                      <Link color='#4b587c' to=''>
+                        {post.post_by}
                       </Link>
                     </Box>
                     <Box

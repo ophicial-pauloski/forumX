@@ -1,13 +1,8 @@
 import {
-  Box,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
   Button,
 } from "@chakra-ui/react";
 import React, { useEffect } from "react";
@@ -31,13 +26,12 @@ export const PostMenu: React.FC<PostMenuProps> = ({ userPostId, postId }) => {
 
   const handleDeletePost = () => {
     dispatch(isDeletingPost(postId));
-    navigate("/");
+    dispatch(getAllPost());
     console.log("delete post", userPostId);
   };
 
-  // useEffect(() => {
-  //   dispatch(getAllPost());
-  // }, [dispatch, navigate]);
+  useEffect(() => {
+   }, [dispatch, navigate]);
 
   return (
     <Menu>
@@ -45,16 +39,14 @@ export const PostMenu: React.FC<PostMenuProps> = ({ userPostId, postId }) => {
         <BsThreeDots fontWeight={"bold"} />
       </MenuButton>
       <MenuList>
-        <MenuItem>Mark as Draft</MenuItem>
-        {userPostId === user?._id ? (
+        <MenuItem>Save</MenuItem>
+        {userPostId === user?._id && (
           <>
             <MenuItem>Edit</MenuItem>
             <MenuItem color={"red"} onClick={handleDeletePost}>
               Delete
             </MenuItem>
           </>
-        ) : (
-          <></>
         )}
       </MenuList>
     </Menu>

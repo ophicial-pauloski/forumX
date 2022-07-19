@@ -22,15 +22,15 @@ export const getPosts = async () => {
 }
 
 //like post
-export const likePost = async (postId: string, userId:string, token: string) => {
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+export const likePost = async (postId: string, userId: string, token: string) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-const res = await axios.put(`${URL_POST}like/${postId}`, config);
-console.log(res.data);
+  const res = await axios.put(`${URL_POST}like/${postId}`, {userId}, config);
+  return res.data;
 };
 
 //get post by id

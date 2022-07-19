@@ -64,7 +64,7 @@ export const isDeletingPost: any = createAsyncThunk(
     try {
       // get token auth state from redux store
       const { auth } = thunkAPI.getState() as any;
-      return await deletePost(post, auth.user.token);
+      return await deletePost(post, auth.user.token as string);
     } catch (error: any) {
       const message =
         (error.response &&
@@ -84,9 +84,6 @@ export const likedAndDislikePost: any = createAsyncThunk(
     try {
       // get token auth state from redux store
       const { auth } = thunkAPI.getState() as any;
-      console.log(auth.user._id);
-      
-      
       return await likePost(postid, auth.user._id, auth.user.token);
     } catch (error: any) {
       const message =
@@ -96,7 +93,6 @@ export const likedAndDislikePost: any = createAsyncThunk(
         error.message ||
         error.toString();
       return message;
-      console.log(message);
     }
   }
 );
