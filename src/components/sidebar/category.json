@@ -1,0 +1,111 @@
+[
+    {
+        "name": "technology",
+        "description": "Technology",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "entertainment",
+        "description": "Entertainment",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "business",
+        "description": "Business",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "travel",
+        "description": "Travel",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "lifestyle",
+        "description": "Lifestyle",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "politics",
+        "description": "Politics",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "religion",
+        "description": "Religion",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "technology",
+        "description": "Technology",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "science",
+        "description": "Science",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "health",
+        "description": "Health",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "sports",
+        "description": "Sports",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "business",
+        "description": "Business",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "travel",
+        "description": "Travel",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "food",
+        "description": "Food",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "lifestyle",
+        "description": "Lifestyle",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "politics",
+        "description": "Politics",
+        "category_id": "1",
+        "posts": []
+    },
+    {
+        "name": "technology",
+        "description": "Technology",
+        "category_id": "1",
+        "posts": []
+    },
+
+    {
+        "name": "health",
+        "description": "Health",
+        "category_id": "1",
+        "posts": []
+    }
+]

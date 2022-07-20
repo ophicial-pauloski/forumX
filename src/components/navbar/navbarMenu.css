@@ -4,3 +4,13 @@
     z-index: 1;
     top: 0;
 }
+
+.user-props-left {
+        display: flex !important;
+    }
+
+@media (max-width:768px) {
+    .user-props-left {
+        display: none !important;
+    }
+}

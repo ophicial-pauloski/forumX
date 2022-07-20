@@ -3,3 +3,15 @@
 *{
   font-family: 'Open Sans', sans-serif;
 }
+
+/* webkit style scroll bar */
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track {
+    background: #fff;
+}

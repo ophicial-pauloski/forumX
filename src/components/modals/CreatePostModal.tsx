@@ -13,11 +13,13 @@ import {
   useToast,
   FormHelperText,
   Textarea,
+  Box,
 } from "@chakra-ui/react";
 import { closeCreatePostModal } from "../../features/indexSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { createPost } from "../../features/post/postSlice";
+import { createPost, getAllPost } from "../../features/post/postSlice";
+import { SpinnerLoader } from "../SpinnerLoader";
 
 export const CreatePostModal = () => {
   const [formData, setFormData] = useState({
@@ -28,7 +30,7 @@ export const CreatePostModal = () => {
   const { title, description } = formData;
   const dispatch = useDispatch();
   const { createPostModal } = useSelector((state: any) => state.indexSlice);
-  const { post, isError, isSuccess, message } = useSelector(
+  const { post, isError, isLoading, isSuccess, message } = useSelector(
     (state: any) => state.post
   );
 
@@ -37,29 +39,6 @@ export const CreatePostModal = () => {
   const handleChangeOnCreatePostForm = (e: any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: "Error",
-        description: `${message.message}`,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      });
-    }
-
-    if (isSuccess) {
-      toast({
-        title: "Success",
-        description: `${message.message}`,
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      
-    }
-  }, [post, isError, isSuccess, message, dispatch, toast]);
-
   const handleCreatePost = (e: any) => {
     e.preventDefault();
     if (title.length === 0) {
@@ -82,14 +61,42 @@ export const CreatePostModal = () => {
       });
     }
     dispatch(createPost(formData));
-    if(title.length !== 0 && description.length !== 0){
-      isSuccess && !isError && dispatch(closeCreatePostModal());
-      console.log(formData);
-      window.location.reload();
-      
+    if (title.length !== 0 && description.length !== 0) {
+      isSuccess &&
+        !isError &&
+        dispatch(closeCreatePostModal()) &&
+        toast({
+          title: "Success",
+          description: "Post created successfully",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     }
     return;
   };
+
+  if (isError) {
+    toast({
+      title: "Error",
+      description: "Something went wrong " + message,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    });
+    dispatch(closeCreatePostModal());
+  }
+
+  if (isLoading) {
+    return (
+      <Box>
+        <SpinnerLoader />
+      </Box>
+    );
+  }
 
   return (
     <>

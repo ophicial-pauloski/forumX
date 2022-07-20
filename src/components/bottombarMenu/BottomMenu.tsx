@@ -2,6 +2,11 @@ import { Box, Button } from '@chakra-ui/react'
 import { openCreatePostModal } from '../../features/indexSlice';
 import './style.css'
 import { useDispatch } from 'react-redux';
+import { BiHomeSmile } from "react-icons/bi";
+import {BsBellFill} from "react-icons/bs";
+import { IoIosAddCircle } from "react-icons/io";
+import { BiWallet } from "react-icons/bi";
+import { FaUser } from "react-icons/fa";
 
 
 export const BottomMenu = () => {
@@ -21,20 +26,20 @@ export const BottomMenu = () => {
       px={4}
       className='bottom-menu'
     >
-      <Button as='span'>
-        <i className='fas fa-home'></i>
+      <Button>
+        <BiHomeSmile />
       </Button>
-      <Button as='span'>
-        <i className='fas fa-bell'></i>
+      <Button>
+        <BsBellFill />
       </Button>
-      <Button as='span' onClick={handleCreatePost}>
-        <i className='fas fa-plus'></i>
+      <Button onClick={handleCreatePost}>
+        <IoIosAddCircle />
       </Button>
-      <Button as='span'>
-        <i className='fas fa-wallet'></i>
+      <Button>
+        <BiWallet />
       </Button>
-      <Button as='span'>
-        <i className='fas fa-user'></i>
+      <Button>
+        <FaUser />
       </Button>
     </Box>
   );

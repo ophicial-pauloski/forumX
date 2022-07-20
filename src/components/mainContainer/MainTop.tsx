@@ -1,7 +1,11 @@
+import { Text } from "@chakra-ui/react";
 import { Form } from "react-bootstrap";
 import './mainTop.css';
+import { useSelector } from 'react-redux';
+
 
 export const MainTop = () => {
+  const {user} = useSelector((state: any) => state.auth);
   return (
     <div className='d-flex align-items-center justify-content-between my-4'>
       <div className='select-post'>
@@ -11,6 +15,7 @@ export const MainTop = () => {
           <option>Oldest</option>
         </Form.Select>
       </div>
+      <Text>Welcome back, {user?.firstName} {user?.lastName}</Text>
       <div className="d-flex align-items-center">
           <div className="in-d me-2"></div>
         <span>Mark all as read</span>

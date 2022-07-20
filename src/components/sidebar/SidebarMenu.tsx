@@ -4,6 +4,8 @@ import "./sidebarMenu.css";
 import { useDispatch, useSelector } from "react-redux";
 import { CreatePostModal } from '../modals/CreatePostModal';
 import { useToast } from '@chakra-ui/react';
+import { SideBarCategories } from "./SideBarCategories";
+import { Box } from '@chakra-ui/react';
 
 
 export const SidebarMenu = () => {
@@ -37,30 +39,9 @@ export const SidebarMenu = () => {
         </span>
       </div>
       <hr />
-      <div className='menu-items'>
-        <ul>
-          <li>
-            <div></div>
-            <span>GENERAL</span>
-          </li>
-          <li>
-            <div></div>
-            <span>NEWS</span>
-          </li>
-          <li>
-            <div></div>
-            <span>ALGORITHMS</span>
-          </li>
-          <li>
-            <div></div>
-            <span>ORGANISITION</span>
-          </li>
-          <li>
-            <div></div>
-            <span>PROJECT</span>
-          </li>
-        </ul>
-      </div>
+      <Box >
+        <SideBarCategories />
+      </Box>
       <CreatePostModal />
     </section>
   );

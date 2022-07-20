@@ -12,9 +12,8 @@ import {
 import { Col, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { closeLoginModal, openRegisterModal } from "../../features/indexSlice";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { login, reset } from "../../features/auth/authSlice";
-import { useEffect } from "react";
 import { SpinnerLoader } from '../SpinnerLoader';
 
 
@@ -25,6 +24,10 @@ export const LoginModal = () => {
   });
 
   const { email, password } = formData;
+
+  const [show, setShow] = useState(false);
+  const handleClick = () => setShow(!show);
+
 
   const dispatch = useDispatch();
   const { loginModal } = useSelector((state: any) => state.indexSlice);
@@ -71,7 +74,7 @@ export const LoginModal = () => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>Login To Get Started</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             {isLoading ? (
@@ -94,13 +97,16 @@ export const LoginModal = () => {
                   <Form.Group className='mb-3'>
                     <Form.Label>Enter Password</Form.Label>
                     <Form.Control
-                      type='password'
+                      type={show ? "text" : "password"}
                       value={password}
                       id='password'
                       name='password'
                       placeholder='Password'
                       onChange={onchangeOnLoginForm}
                     />
+                    <Button float={'right'} h='1.75rem' size='sm' onClick={handleClick}>
+                      {show ? "Hide" : "Show"}
+                    </Button>
                   </Form.Group>
                   <Form.Group
                     as={Row}

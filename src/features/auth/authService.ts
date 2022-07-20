@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL_AUTH = process.env.REACT_APP_API_KEY + "auth/";
+const URL_AUTH = "auth/";
 
 // register user
 export const registerUser = async (user: any) => {
